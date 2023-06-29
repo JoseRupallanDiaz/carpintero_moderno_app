@@ -1,14 +1,14 @@
 class User {
-  String username;
-  String fullname;
-  String password;
+  String? username;
+  String? fullname;
+  String? password;
   int? followers;
   double? valorationProm;
 
   User(
-      {required this.username,
-      required this.fullname,
-      required this.password,
+      {this.username,
+      this.fullname,
+      this.password,
       this.followers,
       this.valorationProm});
 

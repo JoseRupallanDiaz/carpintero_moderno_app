@@ -1,7 +1,6 @@
 import 'package:el_carpintero_moderno_app/domain/entities/post.dart';
 import 'package:el_carpintero_moderno_app/domain/entities/step.dart';
 import 'package:el_carpintero_moderno_app/domain/repositories/post_repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:logging/logging.dart';
 
 class PostMockRepository implements PostRepository {

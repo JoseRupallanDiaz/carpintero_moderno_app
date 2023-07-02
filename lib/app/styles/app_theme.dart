@@ -21,33 +21,80 @@ class AppTheme {
   static const Color selectecIcon = Color(0xFFE99B1E);
 
   static ThemeData theme = ThemeData(
-      scaffoldBackgroundColor: mainBackground,
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: navbarBackground,
-          selectedItemColor: selectecIcon,
-          unselectedItemColor: unselectedIcon,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          type: BottomNavigationBarType.fixed),
-      textTheme: const TextTheme(
-        titleLarge: TextStyle(
-          color: darkTextColor,
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
+    primarySwatch: Colors.brown,
+    scaffoldBackgroundColor: mainBackground,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: navbarBackground,
+        selectedItemColor: selectecIcon,
+        unselectedItemColor: unselectedIcon,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed),
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        color: darkTextColor,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+      ),
+      titleMedium: TextStyle(
+        color: darkTextColor,
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+      ),
+      bodyMedium: TextStyle(
+        color: darkTextColor,
+      ),
+      labelSmall: TextStyle(
+        color: lightTextColor,
+        fontSize: 10,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
+    fontFamily: 'Poppins',
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        elevation: MaterialStateProperty.all<double>(0),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontFamily: 'Poppins',
+          ),
         ),
-        titleMedium: TextStyle(
-          color: darkTextColor,
-          fontSize: 17,
-          fontWeight: FontWeight.w500,
-        ),
-        bodyMedium: TextStyle(
-          color: darkTextColor,
-        ),
-        labelSmall: TextStyle(
-          color: lightTextColor,
-          fontSize: 10,
-          fontWeight: FontWeight.w500,
+        backgroundColor: MaterialStateProperty.all<Color>(buttonPrimary),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       ),
-      fontFamily: 'Poppins');
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(lightTextColor),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontFamily: 'Poppins',
+          ),
+        ),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: Colors.transparent,
+        ),
+      ),
+      fillColor: inputBackground,
+      filled: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          width: 0,
+        ),
+      ),
+    ),
+  );
 }

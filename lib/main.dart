@@ -2,8 +2,10 @@ import 'package:el_carpintero_moderno_app/app/pages/login/login_view.dart';
 import 'package:el_carpintero_moderno_app/app/router_app.dart';
 import 'package:el_carpintero_moderno_app/app/styles/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 

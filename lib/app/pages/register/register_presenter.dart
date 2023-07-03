@@ -21,13 +21,13 @@ class RegisterPresenter extends Presenter {
 
   void register(User user) {
     _postUserUseCase.execute(
-        _PostUseCasePresenter(this), PostUserParams(user: user));
+        _PostUseCaseObserver(this), PostUserParams(user: user));
   }
 }
 
-class _PostUseCasePresenter implements Observer<PostUserResponse> {
+class _PostUseCaseObserver implements Observer<PostUserResponse> {
   final RegisterPresenter registerPresenter;
-  _PostUseCasePresenter(this.registerPresenter);
+  _PostUseCaseObserver(this.registerPresenter);
 
   @override
   void onComplete() {
@@ -38,7 +38,7 @@ class _PostUseCasePresenter implements Observer<PostUserResponse> {
   @override
   void onError(e) {
     assert(registerPresenter.registerOnError != null);
-    registerPresenter.registerOnError!();
+    registerPresenter.registerOnError!(e);
   }
 
   @override

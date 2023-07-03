@@ -15,8 +15,8 @@ class PostUserUseCase extends UseCase<PostUserResponse, PostUserParams> {
       PostUserParams? params) async {
     final controller = StreamController<PostUserResponse>();
     try {
-      final bool flag = await userRepository.register(params!.user);
-      controller.add(PostUserResponse(success: flag));
+      await userRepository.register(params!.user);
+      controller.add(PostUserResponse());
       logger.finest("PostUserUseCase successful.");
       controller.close();
     } catch (e) {
@@ -27,10 +27,7 @@ class PostUserUseCase extends UseCase<PostUserResponse, PostUserParams> {
   }
 }
 
-class PostUserResponse {
-  final bool success;
-  PostUserResponse({required this.success});
-}
+class PostUserResponse {}
 
 class PostUserParams {
   final User user;

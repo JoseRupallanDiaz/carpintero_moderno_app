@@ -21,20 +21,18 @@ class RegisterController extends Controller {
   @override
   void initListeners() {
     registerPresenter.registerOnComplete = () {};
-    registerPresenter.registerOnError = (e) {};
+    registerPresenter.registerOnError = registerOnError;
     registerPresenter.registerOnNext = registerOnNext;
   }
 
   void registerOnNext(PostUserResponse response) {
-    if (response.success) {
-      ScaffoldMessenger.of(getContext())
-          .showSnackBar(appSnackBar("Cuenta registrada exitosamente!"));
-      Navigator.pushReplacementNamed(getContext(), "/login");
-    } else {
-      ScaffoldMessenger.of(getContext())
-          .showSnackBar(appSnackBar("Hubo un error :("));
-    }
-    refreshUI();
+    ScaffoldMessenger.of(getContext())
+        .showSnackBar(appSnackBar("Cuenta registrada exitosamente!"));
+    Navigator.pushReplacementNamed(getContext(), "/login");
+  }
+
+  void registerOnError(e) {
+    ScaffoldMessenger.of(getContext()).showSnackBar(appSnackBar("Error: $e"));
   }
 
   void register() {

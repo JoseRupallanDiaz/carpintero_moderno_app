@@ -1,13 +1,14 @@
+import 'dart:convert';
+
 import 'package:el_carpintero_moderno_app/domain/entities/user.dart';
 import 'package:el_carpintero_moderno_app/domain/repositories/user_repository.dart';
 import 'package:http/http.dart' as http;
-import 'package:logging/logging.dart';
 
 class UserRemoteRepository implements UserRepository {
   //API Variables
   final String mainURI = "carpintero-moderno-api-typescript.azurewebsites.net";
-  final String registerUri = "/singup";
-  Logger logger = Logger("UserRemoteRepository");
+  final String registerUri = "/signup";
+  final String loginUri = "/signin";
 
   @override
   Future<User> getUser() {
@@ -16,13 +17,30 @@ class UserRemoteRepository implements UserRepository {
   }
 
   @override
-  Future<String> login(User user) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<User> login(String email, String password) async {
+    try {
+      var url = Uri.https(mainURI, loginUri);
+      var response = await http.post(
+        url,
+        body: {
+          "email": email,
+          "password": password,
+        },
+      );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> json = jsonDecode(response.body);
+        User user = User.fromJson(json["user"], json["token"]);
+        return user;
+      } else {
+        throw ("${response.statusCode} ${jsonDecode(response.body)["msg"]}");
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<bool> register(User user) async {
+  register(User user) async {
     try {
       var url = Uri.https(mainURI, registerUri);
       var response = await http.post(
@@ -34,16 +52,17 @@ class UserRemoteRepository implements UserRepository {
         },
       );
       if (response.statusCode == 201) {
-        logger.finest("Register successful.");
-        return true;
       } else {
-        logger.warning(
-            "Register unsuccessful. Status code ${response.statusCode}");
-        return false;
+        throw ("${response.statusCode} ${jsonDecode(response.body)["msg"]}");
       }
     } catch (e) {
-      logger.severe("Something went wrong. $e");
-      return false;
+      rethrow;
     }
+  }
+
+  @override
+  saveUser(User user) {
+    // TODO: implement saveUser
+    throw UnimplementedError();
   }
 }

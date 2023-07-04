@@ -5,7 +5,7 @@ class Post {
   double rating;
   List<String> materials;
   List<String> tools;
-  String difficulty;
+  int difficulty;
   String previewImage;
   String description;
   List<Step> steps;
@@ -15,7 +15,7 @@ class Post {
       this.rating = 1.0,
       this.materials = const ["none"],
       this.tools = const ["none"],
-      this.difficulty = "Fácil",
+      this.difficulty = 0,
       this.description = "No Description given",
       this.previewImage = "No image",
       this.steps = const []});
@@ -23,8 +23,9 @@ class Post {
   Post.fromJson(Map<String, dynamic> json)
       : title = json["title"],
         rating = json["rating"],
-        tools = json["tools"],
-        materials = json["materials"],
+        tools = (json["tools"] as List).map((e) => e as String).toList(),
+        materials =
+            (json["materials"] as List).map((e) => e as String).toList(),
         difficulty = json["difficulty"],
         previewImage = json["previewImage"],
         description = json["description"],

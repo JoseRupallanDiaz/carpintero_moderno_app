@@ -1,5 +1,6 @@
 import 'package:el_carpintero_moderno_app/app/pages/posts/posts_controller.dart';
 import 'package:el_carpintero_moderno_app/app/widgets/post_widget.dart';
+import 'package:el_carpintero_moderno_app/data/remote/post_remote_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';

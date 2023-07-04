@@ -1,4 +1,4 @@
-import 'package:el_carpintero_moderno_app/app/pages/login/login_view.dart';
+import 'package:el_carpintero_moderno_app/app/pages/loading/loading_view.dart';
 import 'package:el_carpintero_moderno_app/app/router_app.dart';
 import 'package:el_carpintero_moderno_app/app/styles/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'El Carpintero Moderno',
       theme: AppTheme.theme,
-      home: const LoginView(),
+      home: const LoadingView(),
       onGenerateRoute: router.getRoute,
       navigatorObservers: [router.routeObserver],
     );

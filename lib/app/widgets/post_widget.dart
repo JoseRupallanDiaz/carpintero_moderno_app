@@ -1,9 +1,7 @@
+import 'dart:convert';
 import 'package:el_carpintero_moderno_app/app/styles/app_theme.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:el_carpintero_moderno_app/domain/entities/difficulty.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import '../../domain/entities/post.dart';
 
 class PostWidget extends StatelessWidget {
@@ -24,13 +22,12 @@ class PostWidget extends StatelessWidget {
             alignment: AlignmentDirectional.topEnd,
             children: [
               Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: Image.network(
-                    post.previewImage,
-                  )),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: Image.network(post.previewImage),
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
@@ -41,7 +38,7 @@ class PostWidget extends StatelessWidget {
                     horizontal: 10,
                     vertical: 1,
                   ),
-                  child: Text(post.difficulty,
+                  child: Text(getDifficulty(post.difficulty),
                       style: Theme.of(context).textTheme.labelSmall),
                 ),
               )

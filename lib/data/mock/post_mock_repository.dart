@@ -20,7 +20,7 @@ class PostMockRepository implements PostRepository {
           title: "Mesa de Centro",
           description: "Mesa bonita",
           rating: 4.2,
-          difficulty: "Facil",
+          difficulty: 0,
           tools: ["Martillo", "Taladro"],
           materials: ["Lamina de madera 50x50"],
           steps: [
@@ -35,7 +35,7 @@ class PostMockRepository implements PostRepository {
           description:
               "Silla aumenta FPS brigidoooooooooooooooooooooooooooooo hola texto de ejemplo",
           rating: 1.2,
-          difficulty: "Facil",
+          difficulty: 0,
           tools: ["Martillo"],
           materials: ["Lamina de madera 50x50"],
           steps: [
@@ -49,7 +49,7 @@ class PostMockRepository implements PostRepository {
           title: "Mesa de Centro",
           description: "Mesa bonita",
           rating: 4.2,
-          difficulty: "Facil",
+          difficulty: 0,
           tools: ["Martillo", "Taladro"],
           materials: ["Lamina de madera 50x50"],
           steps: [
@@ -64,7 +64,7 @@ class PostMockRepository implements PostRepository {
           description:
               "Silla aumenta FPS brigidoooooooooooooooooooooooooooooo hola texto de ejemplo",
           rating: 1.2,
-          difficulty: "Facil",
+          difficulty: 0,
           tools: ["Martillo"],
           materials: ["Lamina de madera 50x50"],
           steps: [

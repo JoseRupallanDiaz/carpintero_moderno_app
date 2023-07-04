@@ -9,18 +9,17 @@ class UserLocalRepository implements UserRepository {
   var logger = Logger();
 
   @override
-  Future<User> getUser() async {
+  Future<User?> getUser() async {
     try {
       if (box.hasData(Constants.userInfo)) {
         Map<String, dynamic> json = await box.read(Constants.userInfo);
         User user = User.fromJson(json["user"], json["token"]);
-        logger.d(user.toJson().toString());
         return user;
       } else {
-        throw ("Local User not found.");
+        return null;
       }
     } catch (e) {
-      logger.wtf("Unable to read Local User. $e");
+      logger.e("Unable to read Local User. $e");
       rethrow;
     }
   }
@@ -41,6 +40,15 @@ class UserLocalRepository implements UserRepository {
   void saveUser(User user) async {
     try {
       box.write(Constants.userInfo, user.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  removeUser() {
+    try {
+      box.remove(Constants.userInfo);
     } catch (e) {
       rethrow;
     }

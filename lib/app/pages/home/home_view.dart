@@ -16,6 +16,7 @@ class _HomeViewState extends ViewState<HomeView, HomeController> {
   Widget get view {
     return ControlledWidgetBuilder<HomeController>(
         builder: ((context, controller) => Scaffold(
+              key: globalKey,
               body: SafeArea(child: controller.pages[controller.currentIndex]),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(

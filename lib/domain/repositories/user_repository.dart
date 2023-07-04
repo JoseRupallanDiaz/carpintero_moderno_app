@@ -1,7 +1,9 @@
 import '../entities/user.dart';
 
 abstract class UserRepository {
-  Future<User> getUser();
+  Future<User?> getUser();
+
+  removeUser();
 
   saveUser(User user);
 

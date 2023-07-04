@@ -65,4 +65,10 @@ class UserRemoteRepository implements UserRepository {
     // TODO: implement saveUser
     throw UnimplementedError();
   }
+
+  @override
+  removeUser() {
+    // TODO: implement removeUser
+    throw UnimplementedError();
+  }
 }

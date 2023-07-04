@@ -1,5 +1,6 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:el_carpintero_moderno_app/app/pages/home/home_view.dart';
+import 'package:el_carpintero_moderno_app/app/pages/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -26,7 +27,7 @@ class HomeController extends Controller {
     const HomeView(),
     const HomeView(),
     const HomeView(),
-    const HomeView(),
+    const ProfileView(),
   ];
 
   void itemOnClick(int index) {
@@ -39,7 +40,7 @@ class HomeController extends Controller {
       for (var value in navigationItems)
         BottomNavigationBarItem(
           icon: Icon(value),
-          label: "a",
+          label: "",
         )
     ];
   }

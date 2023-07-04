@@ -2,10 +2,7 @@ import 'package:el_carpintero_moderno_app/app/pages/login/login_controller.dart'
 import 'package:el_carpintero_moderno_app/app/styles/app_theme.dart';
 import 'package:el_carpintero_moderno_app/data/local/user_local_repository.dart';
 import 'package:el_carpintero_moderno_app/data/remote/user_remote_repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class LoginView extends View {
@@ -55,6 +52,7 @@ class _LoginViewState extends ViewState<LoginView, LoginController> {
                               children: [
                                 TextFormField(
                                   controller: controller.email,
+                                  keyboardType: TextInputType.emailAddress,
                                   decoration: const InputDecoration(
                                     label: Center(
                                       child: Text("Correo electrónico"),
@@ -77,9 +75,11 @@ class _LoginViewState extends ViewState<LoginView, LoginController> {
                                   height: 15,
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {
-                                    controller.login();
-                                  },
+                                  onPressed: controller.isLoading
+                                      ? null
+                                      : () {
+                                          controller.login();
+                                        },
                                   child: controller.isLoading
                                       ? const SizedBox(
                                           height: 20,

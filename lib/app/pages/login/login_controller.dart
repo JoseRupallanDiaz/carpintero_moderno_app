@@ -1,7 +1,6 @@
 import 'package:el_carpintero_moderno_app/app/widgets/snackbar.dart';
 import 'package:el_carpintero_moderno_app/data/local/user_local_repository.dart';
 import 'package:el_carpintero_moderno_app/data/remote/user_remote_repository.dart';
-import 'package:el_carpintero_moderno_app/domain/repositories/user_repository.dart';
 import 'package:el_carpintero_moderno_app/domain/usecases/get_remote_user_usecase.dart';
 import 'package:el_carpintero_moderno_app/domain/usecases/save_local_user_usecase.dart';
 import 'package:flutter/material.dart';

@@ -31,25 +31,34 @@ class AppTheme {
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed),
     textTheme: const TextTheme(
-      titleLarge: TextStyle(
-        color: darkTextColor,
-        fontSize: 18,
-        fontWeight: FontWeight.w700,
-      ),
-      titleMedium: TextStyle(
-        color: darkTextColor,
-        fontSize: 17,
-        fontWeight: FontWeight.w500,
-      ),
-      bodyMedium: TextStyle(
-        color: darkTextColor,
-      ),
-      labelSmall: TextStyle(
-        color: lightTextColor,
-        fontSize: 10,
-        fontWeight: FontWeight.w500,
-      ),
-    ),
+        titleLarge: TextStyle(
+          color: darkTextColor,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
+        titleMedium: TextStyle(
+          color: darkTextColor,
+          fontSize: 17,
+          fontWeight: FontWeight.w500,
+        ),
+        bodyMedium: TextStyle(
+          color: darkTextColor,
+        ),
+        labelSmall: TextStyle(
+          color: lightTextColor,
+          fontSize: 10,
+          fontWeight: FontWeight.w500,
+        ),
+        displaySmall: TextStyle(
+          color: darkTextColor,
+          fontSize: 24,
+          fontWeight: FontWeight.w700,
+        ),
+        displayMedium: TextStyle(
+          color: darkTextColor,
+          fontSize: 36,
+          fontWeight: FontWeight.w500,
+        )),
     fontFamily: 'Poppins',
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

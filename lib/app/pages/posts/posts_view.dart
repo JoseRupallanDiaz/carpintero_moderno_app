@@ -18,7 +18,7 @@ class PostsView extends View {
 }
 
 class _PostViewState extends ViewState<PostsView, PostController> {
-  _PostViewState() : super(PostController(PostMockRepository()));
+  _PostViewState() : super(PostController(PostRemoteRepository()));
 
   @override
   Widget get view {

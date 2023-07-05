@@ -14,7 +14,7 @@ class GetLocalUserUseCase extends UseCase<GetLocalUserUseCaseResponse, void> {
       void params) async {
     final controller = StreamController<GetLocalUserUseCaseResponse>();
     try {
-      final User? user = await userRepository.getUser();
+      final User user = await userRepository.getUser();
       controller.add(GetLocalUserUseCaseResponse(user: user));
       logger.finest("GetTokenUseCase successful.");
       controller.close();

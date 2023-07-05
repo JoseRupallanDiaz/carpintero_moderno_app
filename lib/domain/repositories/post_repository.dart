@@ -7,5 +7,5 @@ abstract class PostRepository {
 
   Future<String> newPost(Post post, String token, File image);
 
-  Future<List<Post>> searchPosts(String title);
+  Future<List<Post>> searchWithText(String title);
 }

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:el_carpintero_moderno_app/domain/entities/post.dart';
 import 'package:el_carpintero_moderno_app/domain/repositories/post_repository.dart';
 import 'package:http/http.dart' as http;
+
 import '../../domain/constants.dart';
 
 class PostRemoteRepository extends PostRepository {
@@ -54,5 +55,26 @@ class PostRemoteRepository extends PostRepository {
   Future<List<Post>> searchPosts(String title) {
     // TODO: implement searchPosts
     throw UnimplementedError();
+  }
+  
+  @override
+  Future<List<Post>> searchWithText(String title) async {
+    print(title);
+    List<Post> posts = [];
+    try {
+      var url = Uri.https(
+          Constants.mainURI,
+          Constants.searchPost,
+          {"title": title});
+      var response = await http.get(url);
+      List<dynamic> jsonList = jsonDecode(response.body);
+      for (var post in jsonList) {
+        posts.add(Post.fromJson(post));
+      }
+    } catch (e) {
+
+      print(e);
+    }
+    return posts;
   }
 }

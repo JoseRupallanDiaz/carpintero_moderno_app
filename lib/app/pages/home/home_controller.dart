@@ -4,6 +4,7 @@ import 'package:el_carpintero_moderno_app/app/pages/new_post/new_post_view.dart'
 import 'package:el_carpintero_moderno_app/app/pages/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:el_carpintero_moderno_app/app/pages/Search/Search_view.dart';
 
 import '../posts/posts_view.dart';
 
@@ -25,7 +26,7 @@ class HomeController extends Controller {
 
   final pages = [
     const PostsView(),
-    Container(),
+    const Search_view(),
     const NewPostView(),
     Container(),
     const ProfileView(),

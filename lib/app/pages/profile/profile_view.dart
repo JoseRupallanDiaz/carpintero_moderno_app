@@ -4,6 +4,8 @@ import 'package:el_carpintero_moderno_app/data/local/user_local_repository.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import '../../widgets/wallet.dart';
+
 class ProfileView extends View {
   const ProfileView({super.key});
 
@@ -68,7 +70,14 @@ class _ProfileViewState extends ViewState<ProfileView, ProfileController> {
                               children: [
                                 Expanded(
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return FullScreenDialog();
+                                        },
+                                      );
+                                    },
                                     child: const Text(
                                       "Billetera",
                                       textAlign: TextAlign.center,

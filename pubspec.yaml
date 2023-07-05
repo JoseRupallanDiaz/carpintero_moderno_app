@@ -29,6 +29,8 @@ flutter:
     - assets/img/login_background.jpg
     - assets/img/logo.png
     - assets/img/ic_launcher.png
+    - assets/img/sin-resultados-search.png
+
   fonts:
     - family: Poppins
       fonts:

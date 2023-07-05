@@ -8,4 +8,5 @@ class Constants {
   static String loginEndpoint = "/signin";
   static String getPostsListEndpoint = "/publication/listHomePage";
   static String newPostEndpoint = "/publication/create";
+  static String searchPost = "/publication/search";
 }

@@ -91,8 +91,8 @@ class PostMockRepository implements PostRepository {
   }
 
   @override
-  Future<List<Post>> searchPosts(String title) {
-    // TODO: implement searchPosts
+  Future<List<Post>> searchWithText(String title) {
+    // TODO: implement searchWithText
     throw UnimplementedError();
   }
 }

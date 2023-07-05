@@ -9,14 +9,14 @@ class UserLocalRepository implements UserRepository {
   var logger = Logger();
 
   @override
-  Future<User?> getUser() async {
+  Future<User> getUser() async {
     try {
       if (box.hasData(Constants.userInfo)) {
         Map<String, dynamic> json = await box.read(Constants.userInfo);
         User user = User.fromJson(json["user"], json["token"]);
         return user;
       } else {
-        return null;
+        throw ("Local User not found.");
       }
     } catch (e) {
       logger.e("Unable to read Local User. $e");

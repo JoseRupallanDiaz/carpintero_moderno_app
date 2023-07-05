@@ -1,25 +1,19 @@
 import 'dart:convert';
-
 import 'package:el_carpintero_moderno_app/domain/entities/user.dart';
 import 'package:el_carpintero_moderno_app/domain/repositories/user_repository.dart';
 import 'package:http/http.dart' as http;
+import '../../domain/constants.dart';
 
 class UserRemoteRepository implements UserRepository {
-  //API Variables
-  final String mainURI = "carpintero-moderno-api-typescript.azurewebsites.net";
-  final String registerUri = "/signup";
-  final String loginUri = "/signin";
-
   @override
-  Future<User> getUser() {
-    // TODO: implement getUser
+  Future<User> getUser() async {
     throw UnimplementedError();
   }
 
   @override
   Future<User> login(String email, String password) async {
     try {
-      var url = Uri.https(mainURI, loginUri);
+      var url = Uri.https(Constants.mainURI, Constants.loginEndpoint);
       var response = await http.post(
         url,
         body: {
@@ -42,7 +36,7 @@ class UserRemoteRepository implements UserRepository {
   @override
   register(User user) async {
     try {
-      var url = Uri.https(mainURI, registerUri);
+      var url = Uri.https(Constants.mainURI, Constants.registerEndpoint);
       var response = await http.post(
         url,
         body: {

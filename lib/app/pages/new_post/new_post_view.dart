@@ -57,13 +57,21 @@ class _NewPostViewState extends ViewState<NewPostView, NewPostController> {
                         onPressed: controller.pickImage,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               BootstrapIcons.upload,
                               size: 40,
                             ),
-                            SizedBox(height: 10),
-                            Text("Subir imagen"),
+                            const SizedBox(height: 10),
+                            const Text("Subir imagen"),
+                            (controller.pickedFile != null)
+                                ? Text(
+                                    controller.pickedFile!.name,
+                                    style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                : const SizedBox()
                           ],
                         ),
                       ),

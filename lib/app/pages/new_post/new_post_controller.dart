@@ -29,7 +29,7 @@ class NewPostController extends Controller {
   String? token;
   final _picker = ImagePicker();
   File? _image;
-  XFile? _pickedFile;
+  XFile? pickedFile;
 
   NewPostController(
       PostRepository postRepository, UserRepository userRepository)
@@ -48,7 +48,7 @@ class NewPostController extends Controller {
     newPostPresenter.newPostOnNext = newPostOnNext;
 
     newPostPresenter.getUserOnComplete = () {};
-    newPostPresenter.getUserOnError = (e) {};
+    newPostPresenter.getUserOnError = getUserOnError;
     newPostPresenter.getUserOnNext = getUserOnNext;
   }
 
@@ -135,9 +135,15 @@ class NewPostController extends Controller {
   }
 
   Future<void> pickImage() async {
-    _pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (_pickedFile != null) {
-      _image = File(_pickedFile!.path);
+    pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      _image = File(pickedFile!.path);
     }
+    refreshUI();
+  }
+
+  void getUserOnError(e) {
+    ScaffoldMessenger.of(getContext()).showSnackBar(appSnackBar(e));
+    Navigator.pushReplacementNamed(getContext(), "/home");
   }
 }

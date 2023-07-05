@@ -58,10 +58,10 @@ class NewPostController extends Controller {
 
   void newPostOnNext(NewPostResponse response) {
     isLoading = false;
-    print(response.id);
     refreshUI();
     ScaffoldMessenger.of(response.context)
         .showSnackBar(appSnackBar("Publicación creada"));
+    Navigator.pushReplacementNamed(getContext(), "/home");
   }
 
   void newPost(BuildContext context) {

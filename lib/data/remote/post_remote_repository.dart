@@ -38,6 +38,7 @@ class PostRemoteRepository extends PostRepository {
       request.fields['materials'] = post.materials.toString();
       request.fields['tools'] = post.tools.toString();
       request.fields['difficulty'] = post.difficulty.toString();
+      request.fields['description'] = post.description;
       request.fields['rating'] = "1.0";
       request.files
           .add(await http.MultipartFile.fromPath('previewImage', image.path));

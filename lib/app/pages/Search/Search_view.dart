@@ -4,6 +4,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../data/mock/post_mock_repository.dart';
+import '../../../data/remote/post_remote_repository.dart';
 import '../../styles/app_theme.dart';
 import '../../widgets/SearchBar.dart';
 import '../../widgets/post_widget.dart';
@@ -17,7 +18,7 @@ class Search_view extends View {
 
 
 class _SearchviewState extends ViewState<Search_view, SearchController> {
-  _SearchviewState() : super(SearchController(PostMockRepository()));
+  _SearchviewState() : super(SearchController(PostRemoteRepository()));
 
   @override
   Widget get view {
@@ -53,7 +54,21 @@ class _SearchviewState extends ViewState<Search_view, SearchController> {
               ),
             ),
           ),
-          Expanded(
+          if(controller.posts.length==0) Container(
+            margin: EdgeInsets.symmetric(vertical:70),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/img/sin-resultados-search.png',
+                    width: 200,
+                    height: 200,
+                  ),
+                  Text('No se han encontrado resultados',
+                    style:TextStyle(color: AppTheme.darkTextColor,fontFamily: 'Poppins',fontSize: 15) ,)
+                ],
+              )
+            ),
+          if(controller.posts.length>0) Expanded(
             child: MasonryGridView.builder(
               padding: const EdgeInsets.all(10),
               mainAxisSpacing: 10,

@@ -34,8 +34,23 @@ class PostRemoteRepository extends PostRepository {
   }
   
   @override
-  Future<List<Post>> searchWithText(String title) {
-    // TODO: implement searchWithText
-    throw UnimplementedError();
+  Future<List<Post>> searchWithText(String title) async {
+    print(title);
+    List<Post> posts = [];
+    try {
+      var url = Uri.https(
+          Constants.mainURI,
+          Constants.searchPost,
+          {"title": title});
+      var response = await http.get(url);
+      List<dynamic> jsonList = jsonDecode(response.body);
+      for (var post in jsonList) {
+        posts.add(Post.fromJson(post));
+      }
+    } catch (e) {
+
+      print(e);
+    }
+    return posts;
   }
 }

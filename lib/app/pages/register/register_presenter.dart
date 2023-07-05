@@ -11,7 +11,7 @@ class RegisterPresenter extends Presenter {
 
   final PostUserUseCase _postUserUseCase;
 
-  RegisterPresenter(PostRepository userRepository)
+  RegisterPresenter(UserRepository userRepository)
       : _postUserUseCase = PostUserUseCase(userRepository);
 
   @override

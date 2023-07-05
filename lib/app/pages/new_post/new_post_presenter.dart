@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:el_carpintero_moderno_app/data/local/user_local_repository.dart';
+import 'package:el_carpintero_moderno_app/domain/repositories/user_repository.dart';
+import 'package:el_carpintero_moderno_app/domain/usecases/get_local_user_usecase.dart';
 import 'package:el_carpintero_moderno_app/domain/usecases/new_post_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -12,14 +15,21 @@ class NewPostPresenter extends Presenter {
   Function? newPostOnError;
   Function? newPostOnNext;
 
-  final NewPostUseCase _newPostUseCase;
+  Function? getUserOnComplete;
+  Function? getUserOnError;
+  Function? getUserOnNext;
 
-  NewPostPresenter(PostRepository postRepository)
-      : _newPostUseCase = NewPostUseCase(postRepository);
+  final NewPostUseCase _newPostUseCase;
+  final GetLocalUserUseCase _getLocalUserUseCase;
+
+  NewPostPresenter(PostRepository postRepository, UserRepository userRepository)
+      : _newPostUseCase = NewPostUseCase(postRepository),
+        _getLocalUserUseCase = GetLocalUserUseCase(userRepository);
 
   @override
   void dispose() {
     _newPostUseCase.dispose();
+    _getLocalUserUseCase.dispose();
   }
 
   void newPost(Post post, String token, BuildContext context, File image) {
@@ -31,6 +41,10 @@ class NewPostPresenter extends Presenter {
           context: context,
           image: image,
         ));
+  }
+
+  void getLocalUser() {
+    _getLocalUserUseCase.execute(_GetLocalUserObserver(this));
   }
 }
 
@@ -55,5 +69,29 @@ class _NewPostObserver extends Observer<NewPostResponse> {
   void onNext(NewPostResponse? response) {
     assert(newPostPresenter.newPostOnNext != null);
     newPostPresenter.newPostOnNext!(response);
+  }
+}
+
+class _GetLocalUserObserver extends Observer<GetLocalUserUseCaseResponse> {
+  NewPostPresenter newPostPresenter;
+
+  _GetLocalUserObserver(this.newPostPresenter);
+
+  @override
+  void onComplete() {
+    assert(newPostPresenter.getUserOnComplete != null);
+    newPostPresenter.getUserOnComplete!();
+  }
+
+  @override
+  void onError(e) {
+    assert(newPostPresenter.getUserOnError != null);
+    newPostPresenter.getUserOnError!(e);
+  }
+
+  @override
+  void onNext(GetLocalUserUseCaseResponse? response) {
+    assert(newPostPresenter.getUserOnNext != null);
+    newPostPresenter.getUserOnNext!(response);
   }
 }

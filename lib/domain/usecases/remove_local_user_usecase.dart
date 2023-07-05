@@ -5,7 +5,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class RemoveLocalUserUseCase
     extends UseCase<RemoveLocalUserResponse, RemoveLocalUserParams> {
-  final PostRepository userRepository;
+  final UserRepository userRepository;
 
   RemoveLocalUserUseCase(this.userRepository);
   @override

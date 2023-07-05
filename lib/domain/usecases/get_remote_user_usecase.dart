@@ -5,7 +5,7 @@ import '../entities/user.dart';
 
 class GetRemoteUserUseCase
     extends UseCase<GetRemoteUserUseCaseResponse, GetRemoteUserUseCaseParams> {
-  final PostRepository userRepository;
+  final UserRepository userRepository;
 
   GetRemoteUserUseCase(this.userRepository);
   @override

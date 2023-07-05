@@ -37,20 +37,25 @@ class PostWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       clipBehavior: Clip.antiAlias,
-                      child: Image.network(post.previewImage,
-                          loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) {
-                          return child;
-                        }
-                        return Shimmer.fromColors(
+                      child: Image.network(
+                        post.previewImage,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+                          return Shimmer.fromColors(
                             baseColor: AppTheme.mainBackground,
                             highlightColor: AppTheme.navbarBackground,
                             child: Container(
                               color: Colors.amber,
                               height: 170,
                               width: double.infinity,
-                            ));
-                      }),
+                            ),
+                          );
+                        },
+                        width: double.infinity,
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),

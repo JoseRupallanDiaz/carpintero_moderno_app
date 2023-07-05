@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:el_carpintero_moderno_app/app/pages/new_post/new_post_controller.dart';
 import 'package:el_carpintero_moderno_app/app/styles/app_theme.dart';
+import 'package:el_carpintero_moderno_app/data/local/user_local_repository.dart';
 import 'package:el_carpintero_moderno_app/data/remote/post_remote_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -15,7 +16,8 @@ class NewPostView extends View {
 }
 
 class _NewPostViewState extends ViewState<NewPostView, NewPostController> {
-  _NewPostViewState() : super(NewPostController(PostRemoteRepository()));
+  _NewPostViewState()
+      : super(NewPostController(PostRemoteRepository(), UserLocalRepository()));
 
   @override
   Widget get view {
@@ -39,7 +41,7 @@ class _NewPostViewState extends ViewState<NewPostView, NewPostController> {
                     TextFormField(
                       controller: controller.titleInput,
                       decoration: const InputDecoration(
-                        label: Text("Mi Proyecto"),
+                        hintText: "Mi Proyecto",
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -159,13 +161,27 @@ class _NewPostViewState extends ViewState<NewPostView, NewPostController> {
                       ),
                     ),
                     const SizedBox(height: 20),
+                    Text(
+                      "Descripción",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      controller: controller.descriptionInput,
+                      decoration: const InputDecoration(
+                        hintText: "Proyecto casero facil de realizar.",
+                      ),
+                    ),
+                    const SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
                           controller.newPost(context);
                         },
-                        child: const Text("Siguiente"),
+                        child: const Text("Guardar"),
                       ),
                     ),
                   ],

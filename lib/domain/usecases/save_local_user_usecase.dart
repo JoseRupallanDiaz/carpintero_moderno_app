@@ -5,7 +5,7 @@ import '../repositories/user_repository.dart';
 
 class SaveLocalUserUseCase
     extends UseCase<SaveLocalUserResponse, SaveLocalUserParams> {
-  final PostRepository userRepository;
+  final UserRepository userRepository;
 
   SaveLocalUserUseCase(this.userRepository);
 

@@ -6,6 +6,8 @@ import 'package:el_carpintero_moderno_app/app/styles/app_theme.dart';
 import 'package:el_carpintero_moderno_app/app/widgets/snackbar.dart';
 import 'package:el_carpintero_moderno_app/domain/entities/difficulty.dart';
 import 'package:el_carpintero_moderno_app/domain/repositories/post_repository.dart';
+import 'package:el_carpintero_moderno_app/domain/repositories/user_repository.dart';
+import 'package:el_carpintero_moderno_app/domain/usecases/get_local_user_usecase.dart';
 import 'package:el_carpintero_moderno_app/domain/usecases/new_post_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -22,20 +24,36 @@ class NewPostController extends Controller {
   TextEditingController toolInput = TextEditingController();
   TextEditingController materialsInput = TextEditingController();
   TextEditingController titleInput = TextEditingController();
+  TextEditingController descriptionInput = TextEditingController();
   Post? post;
-
+  String? token;
   final _picker = ImagePicker();
   File? _image;
   XFile? _pickedFile;
 
-  NewPostController(PostRepository postRepository)
-      : newPostPresenter = NewPostPresenter(postRepository);
+  NewPostController(
+      PostRepository postRepository, UserRepository userRepository)
+      : newPostPresenter = NewPostPresenter(postRepository, userRepository);
+
+  @override
+  void onInitState() {
+    super.onInitState();
+    newPostPresenter.getLocalUser();
+  }
 
   @override
   void initListeners() {
     newPostPresenter.newPostOnComplete = () {};
     newPostPresenter.newPostOnError = () {};
     newPostPresenter.newPostOnNext = newPostOnNext;
+
+    newPostPresenter.getUserOnComplete = () {};
+    newPostPresenter.getUserOnError = (e) {};
+    newPostPresenter.getUserOnNext = getUserOnNext;
+  }
+
+  void getUserOnNext(GetLocalUserUseCaseResponse response) {
+    token = response.user!.token;
   }
 
   void newPostOnNext(NewPostResponse response) {
@@ -54,10 +72,13 @@ class NewPostController extends Controller {
       difficulty: difficultyIndex,
       materials: materials,
       tools: tools,
+      description: descriptionInput.text,
     );
-    String token = "";
-    if (_image != null) {
-      newPostPresenter.newPost(post, token, context, _image!);
+    if (_image != null && token != null) {
+      newPostPresenter.newPost(post, token!, context, _image!);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(appSnackBar("Hubo un problema."));
     }
   }
 

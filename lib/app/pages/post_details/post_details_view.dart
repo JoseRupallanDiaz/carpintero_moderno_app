@@ -29,7 +29,8 @@ class PostDetailsView extends StatelessWidget {
                       Image.network(
                         post.previewImage,
                         height: 400,
-                        fit: BoxFit.fitHeight,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),

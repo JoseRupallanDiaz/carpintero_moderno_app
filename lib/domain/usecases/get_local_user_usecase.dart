@@ -6,7 +6,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import '../entities/user.dart';
 
 class GetLocalUserUseCase extends UseCase<GetLocalUserUseCaseResponse, void> {
-  final PostRepository userRepository;
+  final UserRepository userRepository;
 
   GetLocalUserUseCase(this.userRepository);
   @override

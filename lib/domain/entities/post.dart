@@ -26,14 +26,14 @@ class Post {
   Post.fromJson(Map<String, dynamic> json)
       : id = json["_id"],
         title = json["title"],
-        rating = json["rating"],
+        rating = json["rating"].toDouble(),
         tools = (json["tools"] as List).map((e) => e as String).toList(),
         materials =
             (json["materials"] as List).map((e) => e as String).toList(),
         difficulty = json["difficulty"],
         previewImage = json["previewImage"],
-        description = json["description"],
-        steps = Step.listFromJson(json["steps"]);
+        description = json["description"] ?? "Not Description given",
+        steps = Step.listFromJson(json["steps"] ?? []);
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};

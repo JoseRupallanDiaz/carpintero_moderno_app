@@ -33,11 +33,14 @@ class PostRemoteRepository extends PostRepository {
     try {
       var url = Uri.https(Constants.mainURI, Constants.newPostEndpoint);
       var request = http.MultipartRequest("POST", url);
+      request.headers['Authorization'] = "Bearer $token";
       request.fields['title'] = post.title;
       request.fields['materials'] = post.materials.toString();
       request.fields['tools'] = post.tools.toString();
       request.fields['difficulty'] = post.difficulty.toString();
-      request.files.add(await http.MultipartFile.fromPath('image', image.path));
+      request.fields['rating'] = "1.0";
+      request.files
+          .add(await http.MultipartFile.fromPath('previewImage', image.path));
       var streamResponse = await request.send();
       var response = await http.Response.fromStream(streamResponse);
       if (response.statusCode == 200) {
@@ -46,7 +49,6 @@ class PostRemoteRepository extends PostRepository {
         throw (response.body);
       }
     } catch (e) {
-      print(e);
       rethrow;
     }
   }
@@ -56,23 +58,20 @@ class PostRemoteRepository extends PostRepository {
     // TODO: implement searchPosts
     throw UnimplementedError();
   }
-  
+
   @override
   Future<List<Post>> searchWithText(String title) async {
     print(title);
     List<Post> posts = [];
     try {
-      var url = Uri.https(
-          Constants.mainURI,
-          Constants.searchPost,
-          {"title": title});
+      var url =
+          Uri.https(Constants.mainURI, Constants.searchPost, {"title": title});
       var response = await http.get(url);
       List<dynamic> jsonList = jsonDecode(response.body);
       for (var post in jsonList) {
         posts.add(Post.fromJson(post));
       }
     } catch (e) {
-
       print(e);
     }
     return posts;

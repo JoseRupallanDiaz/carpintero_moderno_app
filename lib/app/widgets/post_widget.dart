@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:el_carpintero_moderno_app/app/styles/app_theme.dart';
 import 'package:el_carpintero_moderno_app/domain/entities/difficulty.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../domain/entities/post.dart';
 
 class PostWidget extends StatelessWidget {
@@ -26,7 +28,20 @@ class PostWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 clipBehavior: Clip.antiAlias,
-                child: Image.network(post.previewImage),
+                child: Image.network(post.previewImage,
+                    loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return Shimmer.fromColors(
+                      baseColor: AppTheme.mainBackground,
+                      highlightColor: AppTheme.navbarBackground,
+                      child: Container(
+                        color: Colors.amber,
+                        height: 170,
+                        width: double.infinity,
+                      ));
+                }),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),

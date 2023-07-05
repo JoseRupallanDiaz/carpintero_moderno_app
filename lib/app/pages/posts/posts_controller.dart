@@ -8,6 +8,7 @@ import '../../../domain/entities/post.dart';
 class PostController extends Controller {
   final PostPresenter postPresenter;
   List<Post> posts;
+  bool isLoading = true;
 
   PostController(PostRepository postRepository)
       : postPresenter = PostPresenter(postRepository),
@@ -22,6 +23,7 @@ class PostController extends Controller {
 
   void getPostsOnNext(GetPostsResponse response) {
     posts = response.posts;
+    isLoading = false;
     refreshUI();
   }
 

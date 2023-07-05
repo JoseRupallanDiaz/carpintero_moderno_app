@@ -23,33 +23,35 @@ class _PostViewState extends ViewState<PostsView, PostController> {
   @override
   Widget get view {
     return ControlledWidgetBuilder<PostController>(
-      builder: ((context, controller) => SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 5),
-                  child: Text(
-                    "Últimas Publicaciones",
-                    style: Theme.of(context).textTheme.titleLarge,
+      builder: ((context, controller) => controller.isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 5),
+                    child: Text(
+                      "Últimas Publicaciones",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
-                ),
-                MasonryGridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(10),
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  gridDelegate:
-                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                  MasonryGridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(10),
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    gridDelegate:
+                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemCount: controller.posts.length,
+                    itemBuilder: ((context, index) =>
+                        PostWidget(post: controller.posts[index])),
                   ),
-                  itemCount: controller.posts.length,
-                  itemBuilder: ((context, index) =>
-                      PostWidget(post: controller.posts[index])),
-                ),
-              ],
-            ),
-          )),
+                ],
+              ),
+            )),
     );
   }
 }

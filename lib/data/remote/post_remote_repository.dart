@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:el_carpintero_moderno_app/domain/entities/post.dart';
 import 'package:el_carpintero_moderno_app/domain/repositories/post_repository.dart';
@@ -27,8 +28,31 @@ class PostRemoteRepository extends PostRepository {
   }
 
   @override
-  Future<bool> newPost(Post post, String token) {
-    // TODO: implement newPost
+  Future<String> newPost(Post post, String token, File image) async {
+    try {
+      var url = Uri.https(Constants.mainURI, Constants.newPostEndpoint);
+      var request = http.MultipartRequest("POST", url);
+      request.fields['title'] = post.title;
+      request.fields['materials'] = post.materials.toString();
+      request.fields['tools'] = post.tools.toString();
+      request.fields['difficulty'] = post.difficulty.toString();
+      request.files.add(await http.MultipartFile.fromPath('image', image.path));
+      var streamResponse = await request.send();
+      var response = await http.Response.fromStream(streamResponse);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        throw (response.body);
+      }
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Post>> searchPosts(String title) {
+    // TODO: implement searchPosts
     throw UnimplementedError();
   }
 }

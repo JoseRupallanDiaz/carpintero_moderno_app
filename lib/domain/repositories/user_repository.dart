@@ -1,6 +1,6 @@
 import '../entities/user.dart';
 
-abstract class UserRepository {
+abstract class PostRepository {
   Future<User> getUser();
 
   removeUser();

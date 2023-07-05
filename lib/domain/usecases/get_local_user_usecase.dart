@@ -6,7 +6,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import '../entities/user.dart';
 
 class GetLocalUserUseCase extends UseCase<GetLocalUserUseCaseResponse, void> {
-  final UserRepository userRepository;
+  final PostRepository userRepository;
 
   GetLocalUserUseCase(this.userRepository);
   @override
@@ -14,7 +14,7 @@ class GetLocalUserUseCase extends UseCase<GetLocalUserUseCaseResponse, void> {
       void params) async {
     final controller = StreamController<GetLocalUserUseCaseResponse>();
     try {
-      final User user = await userRepository.getUser();
+      final User? user = await userRepository.getUser();
       controller.add(GetLocalUserUseCaseResponse(user: user));
       logger.finest("GetTokenUseCase successful.");
       controller.close();

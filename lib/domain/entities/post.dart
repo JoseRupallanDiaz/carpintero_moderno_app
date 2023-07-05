@@ -1,6 +1,7 @@
 import 'package:el_carpintero_moderno_app/domain/entities/step.dart';
 
 class Post {
+  String? id;
   String title;
   double rating;
   List<String> materials;
@@ -10,18 +11,21 @@ class Post {
   String description;
   List<Step> steps;
 
-  Post(
-      {this.title = "PlaceHolder Title",
-      this.rating = 1.0,
-      this.materials = const ["none"],
-      this.tools = const ["none"],
-      this.difficulty = 0,
-      this.description = "No Description given",
-      this.previewImage = "No image",
-      this.steps = const []});
+  Post({
+    this.title = "PlaceHolder Title",
+    this.rating = 1.0,
+    this.materials = const ["none"],
+    this.tools = const ["none"],
+    this.difficulty = 0,
+    this.description = "No Description given",
+    this.previewImage = "No image",
+    this.steps = const [],
+    this.id,
+  });
 
   Post.fromJson(Map<String, dynamic> json)
-      : title = json["title"],
+      : id = json["_id"],
+        title = json["title"],
         rating = json["rating"],
         tools = (json["tools"] as List).map((e) => e as String).toList(),
         materials =

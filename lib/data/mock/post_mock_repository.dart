@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:el_carpintero_moderno_app/domain/entities/post.dart';
 import 'package:el_carpintero_moderno_app/domain/entities/step.dart';
 import 'package:el_carpintero_moderno_app/domain/repositories/post_repository.dart';
@@ -83,8 +85,14 @@ class PostMockRepository implements PostRepository {
   }
 
   @override
-  Future<bool> newPost(Post post, String token) {
+  Future<String> newPost(Post post, String token, File image) {
     // TODO: implement newPost
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Post>> searchPosts(String title) {
+    // TODO: implement searchPosts
     throw UnimplementedError();
   }
 }

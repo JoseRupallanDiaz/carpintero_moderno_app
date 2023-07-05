@@ -9,7 +9,7 @@ class LoadingPresenter extends Presenter {
 
   final GetLocalUserUseCase _getLocalUserUseCase;
 
-  LoadingPresenter(UserRepository userRepository)
+  LoadingPresenter(PostRepository userRepository)
       : _getLocalUserUseCase = GetLocalUserUseCase(userRepository);
 
   @override

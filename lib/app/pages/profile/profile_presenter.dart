@@ -16,7 +16,7 @@ class ProfilePresenter extends Presenter {
   final GetLocalUserUseCase _getLocalUserUseCase;
   final RemoveLocalUserUseCase _removeLocalUserUseCase;
 
-  ProfilePresenter(UserRepository userRepository)
+  ProfilePresenter(PostRepository userRepository)
       : _getLocalUserUseCase = GetLocalUserUseCase(userRepository),
         _removeLocalUserUseCase = RemoveLocalUserUseCase(userRepository);
 

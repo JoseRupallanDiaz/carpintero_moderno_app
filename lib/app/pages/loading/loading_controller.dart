@@ -8,7 +8,7 @@ class LoadingController extends Controller {
   LoadingPresenter loadingPresenter;
   bool isLoading = false;
 
-  LoadingController(UserRepository userRepository)
+  LoadingController(PostRepository userRepository)
       : loadingPresenter = LoadingPresenter(userRepository);
 
   @override

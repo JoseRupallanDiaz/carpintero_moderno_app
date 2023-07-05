@@ -4,7 +4,7 @@ import 'package:el_carpintero_moderno_app/domain/repositories/user_repository.da
 import 'package:http/http.dart' as http;
 import '../../domain/constants.dart';
 
-class UserRemoteRepository implements UserRepository {
+class UserRemoteRepository implements PostRepository {
   @override
   Future<User> getUser() async {
     throw UnimplementedError();

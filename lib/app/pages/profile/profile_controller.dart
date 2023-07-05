@@ -24,10 +24,7 @@ class ProfileController extends Controller {
   @override
   void initListeners() {
     profilePresenter.getUserOnComplete = () {};
-    profilePresenter.getUserOnError = (e) {
-      user = null;
-      refreshUI();
-    };
+    profilePresenter.getUserOnError = getUserOnError;
     profilePresenter.getUserOnNext = getUserOnNext;
 
     profilePresenter.removeUserOnComplete = () {};
@@ -36,9 +33,12 @@ class ProfileController extends Controller {
   }
 
   void getUserOnNext(GetLocalUserUseCaseResponse response) {
-    if (response.user != null) {
-      user = response.user;
-    }
+    user = response.user;
+    isLoading = false;
+    refreshUI();
+  }
+
+  void getUserOnError(e) {
     isLoading = false;
     refreshUI();
   }

@@ -6,7 +6,7 @@ import '../entities/user.dart';
 import '../repositories/user_repository.dart';
 
 class PostUserUseCase extends UseCase<PostUserResponse, PostUserParams> {
-  final UserRepository userRepository;
+  final PostRepository userRepository;
 
   PostUserUseCase(this.userRepository);
 

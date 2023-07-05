@@ -38,7 +38,7 @@ class PostWidget extends StatelessWidget {
                     horizontal: 10,
                     vertical: 1,
                   ),
-                  child: Text(getDifficulty(post.difficulty),
+                  child: Text(Difficulty.list[post.difficulty],
                       style: Theme.of(context).textTheme.labelSmall),
                 ),
               )

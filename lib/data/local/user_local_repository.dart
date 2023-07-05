@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import '../../domain/constants.dart';
 
-class UserLocalRepository implements UserRepository {
+class UserLocalRepository implements PostRepository {
   final box = GetStorage();
   var logger = Logger();
 

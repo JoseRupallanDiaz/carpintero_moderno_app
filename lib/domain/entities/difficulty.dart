@@ -1,4 +1,3 @@
-String getDifficulty(int level) {
-  List<String> difficulties = ["Fácil", "Intermedio", "Difícil", "Experto"];
-  return difficulties[level];
+class Difficulty {
+  static List<String> list = ["Fácil", "Medio", "Avanzado", "Experto"];
 }

@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import '../entities/post.dart';
 
 abstract class PostRepository {
   Future<List<Post>> getPosts(int quantity);
 
-  Future<bool> newPost(Post post, String token);
+  Future<String> newPost(Post post, String token, File image);
+
+  Future<List<Post>> searchPosts(String title);
 }
